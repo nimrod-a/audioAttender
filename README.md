@@ -1,6 +1,6 @@
 # audioAttender
 
-A simple python CLI tool for recroding MP3-streams from the internet 
+*A simple Python CLI tool for recording MP3 streams from the internet. Can be used to to record live online Radio sessions*
 
 ##  Usage
 python cli_audiorecorder.py <url-to-record> [--filename=<name>] [--duration=<time>] [--blocksize=<size>]
