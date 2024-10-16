@@ -2,12 +2,11 @@ import argparse
 import pyfiglet  # for optional hacker vibes
 import requests
 from pydub import AudioSegment
-import sys
 import time
 
 
-def record(args):
-    '''Function to record MP3 streams from a given URL'''
+def record(arguments):
+    """Function to record MP3 streams from a given URL"""
     # optional hacker vibes
     script_name = pyfiglet.figlet_format("audioAttender")
     print(script_name)
@@ -16,13 +15,13 @@ def record(args):
     print(script_doc)
 
     # Options & args values
-    url = args.url
-    filename = args.filename
-    seconds = int(args.duration)
-    blocks = int(args.blocks)
+    url = arguments.url
+    filename = arguments.filename
+    seconds = int(arguments.duration)
+    blocks = int(arguments.blocks)
 
     print(
-        f'Your settings:\nURL to record: {url}\nSave to: {filename}\nRecording duration: {seconds} seconds\nBlocksize: {blocks}\n')
+        f'Your settings:\nURL to record: {url}\nSave to: {filename}\nRecording duration: {seconds} seconds\nBlock-size: {blocks}\n')
     print('recording...\n')
 
     try:
@@ -37,7 +36,7 @@ def record(args):
 
         # start recording timer
         start_time = time.time()
-        # iterate over response and write $blocksize chunks to tmp
+        # iterate over response and write $block-size chunks to tmp
         with open(filename, "wb") as f:
             for block in response.iter_content(chunk_size=blocks):
                 if time.time() - start_time >= seconds:
@@ -48,7 +47,7 @@ def record(args):
         # load file as audio object
         sound = AudioSegment.from_mp3(filename)
 
-        # export $seoncds of the audio to final MP3 file
+        # export $seconds of the audio to final MP3 file
         sound[:seconds * 1000].export(filename, format="mp3")
 
         print(f'Recording saved as {filename}')
