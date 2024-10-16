@@ -11,15 +11,17 @@ A simple Python CLI tool for recording MP3 streams from the internet.
 ## Requirements
 
 - First, make sure Python3 and pip are installed on your system. Then install the dependencies using pip:
-$ pip install requirements.txt
 
-- On Linux,  portaudio must be installed: 
-$ sudo apt-get install portaudio19-dev
+`$ pip install requirements.txt
+`
+- On Linux,  portaudio must be installed:
 
+`$ sudo apt-get install portaudio19-dev
+`
 
 ##  Usage
-
-$ audioAttender.py [-h] [--filename FILENAME] [--duration DURATION] [--fs FS] [--version] url
+`
+$ audioAttender.py [-h] [--filename FILENAME] [--duration DURATION] [--fs FS] [--version] url`
 
 options:
   -h, --help           show this help message and exit
