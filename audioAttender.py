@@ -57,10 +57,10 @@ def record(arguments):
     # error handling
     except requests.RequestException as e:
         print(f"Request error: {e}")
-        return 1
+        return -1
     except Exception as e:
         print(f"An error occurred: {e}")
-        return 1
+        return -1
 
 
 def list_files():
@@ -68,12 +68,12 @@ def list_files():
     directory = input('Enter the path to saved recordings: ')
     # Use glob to find all mp3 files in the directory
     mp3_files = glob.glob(os.path.join(directory, '*.mp3'))
-    i = 0
+    i = 1
     # Print the files
     if len(mp3_files) > 0:
         for file in mp3_files:
             print(f'Recording {i}: {file}')
-            i = + 1
+            i = i + 1
         return 0
     else:
         print("No MP3 recording found in the directory.")
