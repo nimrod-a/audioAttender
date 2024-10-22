@@ -3,7 +3,6 @@ import pyfiglet  # for optional hacker vibes
 import requests
 from pydub import AudioSegment
 import time
-import glob
 import os
 
 
@@ -16,7 +15,7 @@ def record(arguments):
         "A simple Python CLI tool for recording MP3 streams from the internet.\n", font='term')
     print(script_doc)
 
-    # Options & args values
+    # options & args values
     url = arguments.url
     filename = arguments.filename
     seconds = int(arguments.duration)
@@ -64,12 +63,12 @@ def record(arguments):
 
 
 def list_files():
-    # Specify the directory
+    # specify the directory
     directory = input('Enter the path to saved recordings: ')
-    # Use glob to find all mp3 files in the directory
-    mp3_files = glob.glob(os.path.join(directory, '*.mp3'))
+    files = os.listdir(directory)
+    # use list comprehension to filter out MP3 files
+    mp3_files = [file for file in files if file.endswith('.mp3')]
     i = 1
-    # Print the files
     if len(mp3_files) > 0:
         for file in mp3_files:
             print(f'Recording {i}: {file}')
