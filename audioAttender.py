@@ -70,10 +70,14 @@ def list_files():
     mp3_files = glob.glob(os.path.join(directory, '*.mp3'))
     i = 0
     # Print the files
-    for file in mp3_files:
-        print(f'Recording {i}: {file}')
-        i = + 1
-    return 0
+    if len(mp3_files) > 0:
+        for file in mp3_files:
+            print(f'Recording {i}: {file}')
+            i = + 1
+        return 0
+    else:
+        print("No MP3 recording found in the directory.")
+        return -1
 
 
 # initialize main parser
