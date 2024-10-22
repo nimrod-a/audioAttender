@@ -12,7 +12,7 @@ A simple Python CLI tool for recording MP3 streams from the internet.
 
 - First, make sure Python3 and pip are installed on your system. Then install the dependencies using pip:
 
-`$ pip install requirements.txt
+`$ pip install -r requirements.txt
 `
 - On Linux,  portaudio must be installed:
 
@@ -20,13 +20,17 @@ A simple Python CLI tool for recording MP3 streams from the internet.
 `
 
 ##  Usage
-`
-$ audioAttender.py [-h] [--filename FILENAME] [--duration DURATION] [--fs FS] [--version] url`
+```bash
+ $ audioAttender.py [-h] [--filename FILENAME] [--duration DURATION] [--blocks BLOCKS] [--version] [--list] url
+
+positional arguments:
+  url                  URL of the recorded audio stream
 
 options:
   -h, --help           show this help message and exit
   --filename FILENAME  Name of recording [default: myRadio.mp3].
   --duration DURATION  Duration of recording in seconds [default: 30].
-  --fs FS              Frequency of samples per second that are taken from the audio signal. [default: ].
+  --blocks BLOCKS      Block size for read/write in bytes [default: 64 ].
   --version            show program's version number and exit
-
+  --list               Lists all saved .mp3 recordings
+```
