@@ -3,6 +3,8 @@ import pyfiglet  # for optional hacker vibes
 import requests
 from pydub import AudioSegment
 import time
+import glob
+import os
 
 
 def record(arguments):
@@ -51,7 +53,6 @@ def record(arguments):
         sound[:seconds * 1000].export(filename, format="mp3")
 
         print(f'Recording saved as {filename}')
-        return 0
 
     # error handling
     except requests.RequestException as e:
@@ -60,6 +61,19 @@ def record(arguments):
     except Exception as e:
         print(f"An error occurred: {e}")
         return 1
+
+
+def list_files():
+    # Specify the directory
+    directory = input('Enter the path to saved recordings: ')
+    # Use glob to find all mp3 files in the directory
+    mp3_files = glob.glob(os.path.join(directory, '*.mp3'))
+    i = 0
+    # Print the files
+    for file in mp3_files:
+        print(f'Recording {i}: {file}')
+        i = + 1
+    return 0
 
 
 # initialize main parser
@@ -77,9 +91,21 @@ parser.add_argument('--blocks', default=64,
                     help='Block size for read/write in bytes [default: 64 ].')
 parser.add_argument('--version', action='version', version='1.0.0')
 
-# set default function
-parser.set_defaults(func=record)
+
+# add show streams option
+parser.add_argument('--list', action='store_true',
+                    help="Lists all saved .mp3 recordings")
+
 
 if __name__ == '__main__':
     args = parser.parse_args()
+
+    # execute --list if option provided
+    if args.list:
+        list_files()
+        exit(0)
+
+    # else execute record
+    parser.set_defaults(func=record)
+
     args.func(args)
