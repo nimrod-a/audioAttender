@@ -19,7 +19,7 @@ def record(arguments):
     url = arguments.url
     filename = arguments.filename
     seconds = int(arguments.duration)
-    blocks = int(arguments.blocks)
+    blocks = int(arguments.blocksize)
 
     print(
         f'Your settings:\nURL to record: {url}\nSave to: {filename}\nRecording duration: {seconds} seconds\nBlock-size: {blocks}\n')
@@ -90,7 +90,7 @@ parser.add_argument('--filename', default='myRadio.mp3',
                     help="Name of recording [default: myRadio.mp3].")
 parser.add_argument('--duration', default=30,
                     help='Duration of recording in seconds [default: 30].')
-parser.add_argument('--blocks', default=64,
+parser.add_argument('--blocksize', default=64,
                     help='Block size for read/write in bytes [default: 64 ].')
 parser.add_argument('--version', action='version', version='1.0.0')
 
