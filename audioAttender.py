@@ -99,16 +99,13 @@ parser.add_argument('--version', action='version', version='1.0.0')
 parser.add_argument('--list', action='store_true',
                     help="Lists all saved .mp3 recordings")
 
+parser.set_defaults(func=record)
+
 
 if __name__ == '__main__':
     args = parser.parse_args()
 
-    # execute --list if option provided
     if args.list:
         list_files()
-        exit(0)
-
-    # else execute record
-    parser.set_defaults(func=record)
-
-    args.func(args)
+    else:
+        args.func(args)
